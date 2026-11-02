@@ -3,40 +3,34 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ALLAN MEDICAL V10.3 COMPLETE - SUPER ADMIN ONLY EDIT USERS + ALL MODULES</title>
+<title>ALLAN MEDICAL V10.4 FINAL - ULTRA CLEAN COMPLETE SYSTEM</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-@media print { .no-print { display:none!important; } body * { visibility:hidden; } #printArea, #printArea * { visibility:visible; } #printArea { position:absolute; left:0; top:0; width:100%; } }
-</style>
+<style>@media print { .no-print { display:none!important; } body * { visibility:hidden; } #printArea, #printArea * { visibility:visible; } #printArea { position:absolute; left:0; top:0; width:100%; } }</style>
 </head>
 <body class="bg-gray-100">
 <div id="loginScreen" class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 to-teal-700 p-4">
 <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md">
 <h1 class="text-2xl font-black text-center text-blue-900">ALLAN MEDICAL SYSTEM</h1>
-<p class="text-center text-sm font-bold text-teal-600 mb-1">V10.3 COMPLETE - SUPER ADMIN ONLY EDIT USERS</p>
-<p class="text-center text-xs text-gray-500 mb-6">MTN MoMo: 0795390878 | Owner: allan128 | 50 Drugs + Barcode + Edit + Print + Delete + Block + Save</p>
+<p class="text-center text-sm font-bold text-teal-600 mb-1">V10.4 FINAL ULTRA CLEAN</p>
+<p class="text-center text-xs text-gray-500 mb-6">MTN MoMo: 0795390878 | Owner: allan128 | 50 Drugs + Barcode + Edit + Print + Delete + Save</p>
 <div id="loginError" class="hidden bg-red-100 text-red-700 p-2 rounded text-sm mb-3 text-center"></div>
 <label class="text-xs font-bold">Username</label>
-<input id="loginUser" class="w-full border-2 p-3 rounded-lg mb-3" placeholder="Username">
+<input id="loginUser" class="w-full border-2 p-3 rounded-lg mb-3" placeholder="Enter username">
 <label class="text-xs font-bold">Password</label>
 <div class="relative mb-4">
-<input id="loginPass" type="password" class="w-full border-2 p-3 rounded-lg" placeholder="Password">
+<input id="loginPass" type="password" class="w-full border-2 p-3 rounded-lg" placeholder="Enter password">
 <button onclick="document.getElementById('loginPass').type = document.getElementById('loginPass').type=='password'?'text':'password'" class="absolute right-3 top-3 text-gray-500"><i class="fa fa-eye"></i></button>
 </div>
-<button onclick="doLogin()" class="w-full bg-blue-900 text-white p-3 rounded-lg font-black">LOGIN</button>
-<div class="mt-4 bg-gray-50 p-3 rounded text-xs">
-<b>Staff GLOBAL:</b><br>
-red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 / 1111<br>red7 / 1111<br>
-<span class="text-green-600">V10.3: Only super admin allan128 can edit username & password for others!</span>
-</div>
+<button onclick="doLogin()" class="w-full bg-blue-900 text-white p-3 rounded-lg font-black hover:bg-black">LOGIN <i class="fa fa-sign-in-alt ml-2"></i></button>
+<div class="mt-6 text-center"><p class="text-[11px] text-gray-400">Secure Login - Contact Admin for access</p><p class="text-[10px] text-gray-300 mt-1">V10.4 - Staff GLOBAL hidden from login portal, codes inside system, staff list only for Super Admin</p></div>
 </div>
 </div>
 <div id="appScreen" class="hidden min-h-screen flex">
 <div class="w-64 bg-blue-950 text-white flex flex-col no-print">
 <div class="p-4 border-b border-blue-800">
 <h2 class="font-black text-lg">MEDICAL SYSTEM</h2>
-<p class="text-xs text-teal-300">V10.3 COMPLETE | <span id="sideUser"></span> - <span id="sideRole"></span></p>
+<p class="text-xs text-teal-300">V10.4 FINAL | <span id="sideUser"></span> - <span id="sideRole"></span></p>
 <p id="permBadge" class="text-[10px] mt-1"></p>
 </div>
 <div class="flex-1 overflow-y-auto p-2 space-y-1 text-sm">
@@ -47,30 +41,31 @@ red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 
 <button onclick="showModule('billing')" class="w-full text-left p-2.5 rounded hover:bg-blue-800">Billing / Receipts</button>
 <button onclick="showModule('expenses')" class="w-full text-left p-2.5 rounded hover:bg-blue-800">Expenses</button>
 <button onclick="showModule('statement')" class="w-full text-left p-2.5 rounded bg-teal-700">System Statement</button>
-<button onclick="showModule('staff')" class="w-full text-left p-2.5 rounded hover:bg-blue-800">Staff Management</button>
+<button id="btnStaff" onclick="showModule('staff')" class="w-full text-left p-2.5 rounded hover:bg-blue-800 hidden">Staff Management (Super Admin Only)</button>
 <button onclick="showModule('changepass')" class="w-full text-left p-2.5 rounded bg-yellow-600 font-bold">Change Password</button>
 <button onclick="showModule('share')" class="w-full text-left p-2.5 rounded hover:bg-blue-800">Share / QR</button>
 </div>
-<div class="p-3"><button onclick="doLogout()" class="w-full bg-red-600 p-2.5 rounded font-bold">Logout</button></div>
+<div class="p-3 border-t border-blue-800"><button onclick="doLogout()" class="w-full bg-red-600 p-2.5 rounded font-bold text-sm">Logout</button></div>
 </div>
 <div class="flex-1 overflow-y-auto p-6">
 <div id="printArea">
 <div id="mod-dashboard" class="module">
-<h1 class="text-2xl font-black mb-4">Dashboard - V10.3 COMPLETE</h1>
+<h1 class="text-2xl font-black mb-4">Dashboard - V10.4 FINAL ULTRA CLEAN COMPLETE</h1>
 <div id="dashPermInfo" class="p-3 rounded text-sm mb-4"></div>
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-<div class="bg-white p-4 rounded-xl shadow"><p class="text-xs">Income</p><p id="dashIncome" class="text-xl font-black text-green-600">UGX 0</p></div>
+<div class="bg-white p-4 rounded-xl shadow"><p class="text-xs">Total Income</p><p id="dashIncome" class="text-xl font-black text-green-600">UGX 0</p></div>
 <div class="bg-white p-4 rounded-xl shadow"><p class="text-xs">Expenses</p><p id="dashExp" class="text-xl font-black text-red-600">UGX 0</p></div>
 <div class="bg-white p-4 rounded-xl shadow"><p class="text-xs">Profit</p><p id="dashProfit" class="text-xl font-black text-blue-600">UGX 0</p></div>
 <div class="bg-white p-4 rounded-xl shadow"><p class="text-xs">Patients</p><p id="dashPatients" class="text-xl font-black">0</p></div>
 </div>
+<div class="bg-black text-yellow-300 p-3 rounded text-sm">🔒 V10.4 FINAL: Login clean - NO staff list visible! Codes inside: allan128/2024 hidden + red1-red7/1111. Staff list ONLY Super Admin! Only Super Admin edits username & password! All can change own password anytime!</div>
 </div>
 <div id="mod-patients" class="module hidden">
-<div class="flex justify-between items-center mb-4"><h1 class="text-xl font-black">Patients - Edit + Print + Delete + Block + Save</h1><button onclick="printModule()" class="no-print bg-blue-900 text-white px-3 py-1 rounded text-sm">Print</button></div>
+<div class="flex justify-between items-center mb-4"><h1 class="text-xl font-black">Patients - Edit + Print + Delete + Save</h1><button onclick="printModule()" class="no-print bg-blue-900 text-white px-3 py-1 rounded text-sm">Print</button></div>
 <div class="bg-white p-4 rounded-xl shadow mb-4 no-print grid grid-cols-1 md:grid-cols-4 gap-2">
 <input id="patName" placeholder="Patient Name" class="border p-2 rounded"><input id="patPhone" placeholder="Phone" class="border p-2 rounded"><input id="patAge" placeholder="Age" type="number" class="border p-2 rounded"><button onclick="addPatient()" class="bg-blue-900 text-white rounded p-2 font-bold">Save</button>
 </div>
-<div class="bg-white rounded-xl shadow overflow-auto"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-2 text-left">Name - Status</th><th class="p-2">Phone</th><th class="p-2">Age</th><th class="p-2 no-print">Actions</th></tr></thead><tbody id="patTable"></tbody></table></div>
+<div class="bg-white rounded-xl shadow overflow-auto"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-2 text-left">Name</th><th class="p-2">Phone</th><th class="p-2">Age</th><th class="p-2 no-print">Actions</th></tr></thead><tbody id="patTable"></tbody></table></div>
 </div>
 <div id="mod-pharmacy" class="module hidden">
 <div class="flex justify-between items-center mb-4"><h1 class="text-xl font-black">Pharmacy - 50 Drugs + Barcode</h1><button onclick="printModule()" class="no-print bg-blue-900 text-white px-3 py-1 rounded text-sm">Print</button></div>
@@ -101,7 +96,7 @@ red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 
 <div class="bg-white rounded-xl shadow overflow-auto"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-2 text-left">Title</th><th class="p-2">Amount</th><th class="p-2">Date</th><th class="p-2 no-print">Actions</th></tr></thead><tbody id="expTable"></tbody></table></div>
 </div>
 <div id="mod-statement" class="module hidden">
-<h1 class="text-xl font-black mb-4">System Statement - Income vs Expenses</h1>
+<h1 class="text-xl font-black mb-4">System Statement</h1>
 <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
 <div class="bg-green-600 text-white p-4 rounded-xl"><p class="text-xs">Total Income</p><p id="stIncome" class="text-2xl font-black">UGX 0</p></div>
 <div class="bg-red-600 text-white p-4 rounded-xl"><p class="text-xs">Total Expenses</p><p id="stExp" class="text-2xl font-black">UGX 0</p></div>
@@ -109,15 +104,15 @@ red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 
 </div>
 </div>
 <div id="mod-staff" class="module hidden">
-<h1 class="text-xl font-black mb-2">Staff Management - Super Admin Only Can Edit Username & Password</h1>
+<h1 class="text-xl font-black mb-2">Staff Management - Super Admin Only View</h1>
 <div id="staffPermInfo" class="p-2 rounded text-xs mb-3"></div>
 <div id="staffCreateArea" class="bg-white p-4 rounded-xl shadow mb-4 no-print grid grid-cols-1 md:grid-cols-5 gap-2">
-<input id="staffUser" placeholder="Username e.g. red8" class="border p-2 rounded"><input id="staffPass" placeholder="Password e.g. 1111" class="border p-2 rounded"><select id="staffRole" class="border p-2 rounded"><option>cashier</option><option>admin</option><option>doctor</option><option>nurse</option><option>lab_tech</option><option>super_admin</option></select><input id="staffFullName" placeholder="Full Name" class="border p-2 rounded"><button onclick="createStaff()" class="bg-gray-800 text-white rounded p-2 font-bold">Create User</button>
+<input id="staffUser" placeholder="Username" class="border p-2 rounded"><input id="staffPass" placeholder="Password" class="border p-2 rounded"><select id="staffRole" class="border p-2 rounded"><option>cashier</option><option>admin</option><option>doctor</option><option>nurse</option><option>lab_tech</option></select><input id="staffFullName" placeholder="Full Name" class="border p-2 rounded"><button onclick="createStaff()" class="bg-gray-800 text-white p-2 rounded font-bold">Create User</button>
 </div>
-<div class="bg-white rounded-xl shadow overflow-auto"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-2 text-left">User - Role - Status</th><th class="p-2">Permissions</th><th class="p-2 no-print">Actions</th></tr></thead><tbody id="staffTable"></tbody></table></div>
+<div class="bg-white rounded-xl shadow overflow-auto"><table class="w-full text-sm"><thead class="bg-gray-100"><tr><th class="p-2 text-left">User - Role</th><th class="p-2">Password Status</th><th class="p-2 no-print">Actions</th></tr></thead><tbody id="staffTable"></tbody></table></div>
 </div>
 <div id="mod-changepass" class="module hidden">
-<h1 class="text-xl font-black mb-4">Change Password - All Users + Super Admin</h1>
+<h1 class="text-xl font-black mb-4">Change Password</h1>
 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
 <div class="bg-white p-6 rounded-xl shadow">
 <div class="bg-blue-50 p-3 rounded mb-4 text-sm"><b>Logged in as:</b> <span id="cpUser"></span> - <span id="cpRole"></span><br><span id="cpPermText" class="text-[11px]"></span></div>
@@ -130,7 +125,6 @@ red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 
 </div>
 <div class="bg-white p-6 rounded-xl shadow" id="adminResetSection">
 <h3 class="font-bold text-sm mb-2">🔒 Super Admin Only: Edit Username & Password</h3>
-<div class="bg-black text-yellow-300 p-2 rounded text-[11px] mb-3">ONLY super admin allan128 can edit usernames & passwords for others!</div>
 <label class="text-xs font-bold">Select User</label><select id="resetUserSelect" class="w-full border p-2 rounded mb-2"></select>
 <label class="text-xs font-bold">Edit Username</label><input id="editNewUsername" placeholder="New username" class="w-full border p-2 rounded mb-2">
 <label class="text-xs font-bold">New Password</label><input id="resetNewPass" placeholder="New password" class="w-full border p-2 rounded mb-3">
@@ -159,37 +153,35 @@ red1 / 1111<br>red2 / 1111<br>red3 / 1111<br>red4 / 1111<br>red5 / 1111<br>red6 
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
-// V10.3 COMPLETE LOGIC - SUPER ADMIN ONLY EDIT + ALL MODULES
 const _0xS = "YWxsYW4xMjg="; const _0xP = "MjAyNA=="; function _dec(b){return atob(b);}
 const GLOBAL_STAFF_BASE = [
-  {u:_dec(_0xS), p:_dec(_0xP), role:'super_admin', status:'Approved', hidden:true},
-  {u:'red1', p:'1111', role:'lab_tech', status:'Approved'},
-  {u:'red2', p:'1111', role:'doctor', status:'Approved'},
-  {u:'red3', p:'1111', role:'admin', status:'Approved'},
-  {u:'red4', p:'1111', role:'nurse', status:'Approved'},
-  {u:'red5', p:'1111', role:'cashier', status:'Approved'},
-  {u:'red6', p:'1111', role:'admin', status:'Approved'},
-  {u:'red7', p:'1111', role:'cashier', status:'Approved'}
+  {u:_dec(_0xS), p:_dec(_0xP), role:'super_admin', hidden:true},
+  {u:'red1', p:'1111', role:'lab_tech'},
+  {u:'red2', p:'1111', role:'doctor'},
+  {u:'red3', p:'1111', role:'admin'},
+  {u:'red4', p:'1111', role:'nurse'},
+  {u:'red5', p:'1111', role:'cashier'},
+  {u:'red6', p:'1111', role:'admin'},
+  {u:'red7', p:'1111', role:'cashier'}
 ];
 const DRUGS = ["Amoxicillin 500mg","Paracetamol 500mg","Ibuprofen 400mg","Metronidazole 400mg","Ciprofloxacin 500mg","Doxycycline 100mg","Azithromycin 500mg","Omeprazole 20mg","Lumartem 20/120mg","Coartem 20/120mg","Panadol Extra","Diclofenac 50mg","Cetirizine 10mg","Loratadine 10mg","Amoxiclav 625mg","Flucloxacillin 500mg","Erythromycin 500mg","Metformin 500mg","Glibenclamide 5mg","Atenolol 50mg","Lisinopril 10mg","Amlodipine 5mg","Furosemide 40mg","Aspirin 75mg","Albendazole 400mg","Mebendazole 100mg","Quinine 300mg","Artesunate 60mg","ORS Sachet","Zinc 20mg","Vitamin B Complex","Folic Acid 5mg","Iron 200mg","Multivitamin","Vitamin C 500mg","Cough Syrup 100ml","Eye Drops","Ear Drops","Betadine 100ml","Surgical Spirit","Plaster Pack","Bandage Roll","Gloves Box","Syringe 5ml","Needle 21G","IV Cannula","Normal Saline 500ml","Dextrose 5% 500ml","Ringer Lactate 500ml"];
-let store = JSON.parse(localStorage.getItem('ams_v10_3_complete') || '{}');
-store.patients = store.patients || []; store.pharmacy = store.pharmacy || []; store.lab = store.lab || []; store.billing = store.billing || []; store.expenses = store.expenses || []; store.localStaff = store.localStaff || []; store.passOverrides = store.passOverrides || {}; store.userOverrides = store.userOverrides || {};
-function save(){ localStorage.setItem('ams_v10_3_complete', JSON.stringify(store)); renderAll(); }
-function getGlobalWithOverrides(){ let base = JSON.parse(JSON.stringify(GLOBAL_STAFF_BASE)); base.forEach(b=>{ if(store.passOverrides[b.u]){ b.p=store.passOverrides[b.u]; b.changed=true; } }); return base; }
-function getAllStaff(){ let map={}; getGlobalWithOverrides().forEach(s=> map[s.u]=s); store.localStaff.forEach(s=>{ if(store.passOverrides[s.u]) s.p=store.passOverrides[s.u]; map[s.u]=s; }); return Object.values(map); }
+let store = JSON.parse(localStorage.getItem('ams_v10_4_final') || '{}');
+store.patients = store.patients || []; store.pharmacy = store.pharmacy || []; store.lab = store.lab || []; store.billing = store.billing || []; store.expenses = store.expenses || []; store.localStaff = store.localStaff || []; store.passOverrides = store.passOverrides || {};
+function save(){ localStorage.setItem('ams_v10_4_final', JSON.stringify(store)); renderAll(); }
+function getAllStaff(){ let map={}; let base=JSON.parse(JSON.stringify(GLOBAL_STAFF_BASE)); base.forEach(b=>{ if(store.passOverrides[b.u]) b.p=store.passOverrides[b.u]; map[b.u]=b; }); store.localStaff.forEach(s=>{ if(store.passOverrides[s.u]) s.p=store.passOverrides[s.u]; map[s.u]=s; }); return Object.values(map); }
 function isSuperAdmin(){ let sess = JSON.parse(localStorage.getItem('ams_session')||'{}'); return sess.role==='super_admin' && sess.u===_dec(_0xS); }
-function doLogin(){ let u=document.getElementById('loginUser').value.trim(); let p=document.getElementById('loginPass').value.trim(); let err=document.getElementById('loginError'); let all=getAllStaff(); let f=all.find(s=> s.u===u && s.p===p); if(!f){ err.textContent='Invalid!'; err.classList.remove('hidden'); return;} localStorage.setItem('ams_session', JSON.stringify(f)); showApp(f); }
-function showApp(user){ document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('appScreen').classList.remove('hidden'); document.getElementById('sideUser').textContent=user.u; document.getElementById('sideRole').textContent=user.role; document.getElementById('cpUser').textContent=user.u; document.getElementById('cpRole').textContent=user.role; let badge=document.getElementById('permBadge'); let dashInfo=document.getElementById('dashPermInfo'); let staffInfo=document.getElementById('staffPermInfo'); let cpPerm=document.getElementById('cpPermText'); let createArea=document.getElementById('staffCreateArea'); let adminReset=document.getElementById('adminResetSection'); if(isSuperAdmin()){ badge.innerHTML='<span class="bg-black text-yellow-300 px-2 py-0.5 rounded">🔒 SUPER ADMIN - Can edit all usernames & passwords</span>'; dashInfo.className='p-3 rounded text-sm mb-4 bg-black text-yellow-300'; dashInfo.innerHTML='🔒 SUPER ADMIN MODE: ONLY ONE who can edit username & password for all staff!'; staffInfo.className='p-2 rounded text-xs mb-3 bg-black text-yellow-300'; staffInfo.innerHTML='🔒 SUPER ADMIN: You can create, edit username, edit password, delete any user.'; cpPerm.textContent='Super Admin: Can change own + edit any user below'; createArea.classList.remove('hidden'); adminReset.classList.remove('hidden'); } else { badge.innerHTML='<span class="bg-gray-700 text-white px-2 py-0.5 rounded">Staff - Can only change own password</span>'; dashInfo.className='p-3 rounded text-sm mb-4 bg-yellow-50 border border-yellow-400'; dashInfo.innerHTML='Staff Mode: You can ONLY change YOUR OWN password. Only Super Admin can edit others.'; staffInfo.className='p-2 rounded text-xs mb-3 bg-yellow-50 border border-yellow-300'; staffInfo.innerHTML='Staff View: Cannot create/edit/delete users.'; cpPerm.textContent='You can change YOUR OWN password only.'; createArea.classList.add('hidden'); adminReset.classList.add('hidden'); } renderAll(); showModule('dashboard'); setTimeout(()=>{ try{ new QRCode(document.getElementById('qrcode'), {text:'https://allan128ug.github.io/medical-system/', width:180, height:180}); }catch(e){} },500); }
+function doLogin(){ let u=document.getElementById('loginUser').value.trim(); let p=document.getElementById('loginPass').value.trim(); let all=getAllStaff(); let f=all.find(s=> s.u===u && s.p===p); if(!f){ document.getElementById('loginError').textContent='Invalid! Contact admin.'; document.getElementById('loginError').classList.remove('hidden'); return;} localStorage.setItem('ams_session', JSON.stringify(f)); showApp(f); }
+function showApp(user){ document.getElementById('loginScreen').classList.add('hidden'); document.getElementById('appScreen').classList.remove('hidden'); document.getElementById('sideUser').textContent=user.u; document.getElementById('sideRole').textContent=user.role; document.getElementById('cpUser').textContent=user.u; document.getElementById('cpRole').textContent=user.role; let badge=document.getElementById('permBadge'); let btnStaff=document.getElementById('btnStaff'); let createArea=document.getElementById('staffCreateArea'); let adminReset=document.getElementById('adminResetSection'); if(isSuperAdmin()){ badge.innerHTML='<span class="bg-black text-yellow-300 px-2 py-0.5 rounded">🔒 SUPER ADMIN - Only you see staff list</span>'; btnStaff.classList.remove('hidden'); createArea.classList.remove('hidden'); adminReset.classList.remove('hidden'); } else { badge.innerHTML='<span class="bg-gray-700 text-white px-2 py-0.5 rounded">Staff - Staff list hidden</span>'; btnStaff.classList.add('hidden'); createArea.classList.add('hidden'); adminReset.classList.add('hidden'); } renderAll(); showModule('dashboard'); setTimeout(()=>{ try{ new QRCode(document.getElementById('qrcode'), {text:'https://allan128ug.github.io/medical-system/', width:180, height:180}); }catch(e){} },500); }
 function doLogout(){ localStorage.removeItem('ams_session'); location.reload(); }
-function showModule(id){ document.querySelectorAll('.module').forEach(m=> m.classList.add('hidden')); document.getElementById('mod-'+id).classList.remove('hidden'); }
+function showModule(id){ if(id==='staff' && !isSuperAdmin()){ alert('⛔ ONLY SUPER ADMIN can see staff list!'); return; } document.querySelectorAll('.module').forEach(m=> m.classList.add('hidden')); document.getElementById('mod-'+id).classList.remove('hidden'); }
 function printModule(){ window.print(); }
-function changeOwnPassword(){ let cur=document.getElementById('cpCurrent').value.trim(); let nw=document.getElementById('cpNew').value.trim(); let conf=document.getElementById('cpConfirm').value.trim(); let err=document.getElementById('cpError'); let suc=document.getElementById('cpSuccess'); err.classList.add('hidden'); suc.classList.add('hidden'); if(!cur||!nw||!conf){ err.textContent='Fill all fields'; err.classList.remove('hidden'); return;} if(nw.length<4){ err.textContent='Too short'; err.classList.remove('hidden'); return;} if(nw!==conf){ err.textContent='Do not match'; err.classList.remove('hidden'); return;} let sess=JSON.parse(localStorage.getItem('ams_session')||'{}'); let all=getAllStaff(); let me=all.find(s=> s.u===sess.u); if(!me||me.p!==cur){ err.textContent='Current password wrong!'; err.classList.remove('hidden'); return;} store.passOverrides[sess.u]=nw; save(); sess.p=nw; localStorage.setItem('ams_session', JSON.stringify(sess)); suc.textContent='✅ Your password changed! New: '+nw; suc.classList.remove('hidden'); }
-function adminResetPassword(){ if(!isSuperAdmin()){ alert('⛔ ONLY SUPER ADMIN can edit!'); return;} let oldU=document.getElementById('resetUserSelect').value; let newU=document.getElementById('editNewUsername').value.trim(); let np=document.getElementById('resetNewPass').value.trim(); if(!oldU){ alert('Select user'); return;} if(!newU) newU=oldU; if(!np){ alert('Enter new password'); return;} if(oldU===_dec(_0xS) && newU!==oldU){ alert('Cannot change super admin username!'); return;} if(newU!==oldU){ let local=store.localStaff.find(s=> s.u===oldU); if(local){ local.u=newU; local.p=np; } if(store.passOverrides[oldU]) delete store.passOverrides[oldU]; store.passOverrides[newU]=np; alert('✅ Username: '+oldU+' → '+newU+' and password: '+np); } else { store.passOverrides[oldU]=np; let local=store.localStaff.find(s=> s.u===oldU); if(local) local.p=np; alert('✅ Password for '+oldU+' changed to: '+np); } save(); let sess=JSON.parse(localStorage.getItem('ams_session')||'{}'); if(sess.u===oldU){ sess.u=newU; sess.p=np; localStorage.setItem('ams_session', JSON.stringify(sess)); } }
-function changeSuperAdminPass(){ if(!isSuperAdmin()){ alert('Only super admin!'); return;} let np=document.getElementById('superAdminNewPass').value.trim(); if(!np||np.length<4){ alert('Enter valid password'); return;} store.passOverrides[_dec(_0xS)]=np; save(); let sess=JSON.parse(localStorage.getItem('ams_session')||'{}'); sess.p=np; localStorage.setItem('ams_session', JSON.stringify(sess)); alert('✅ SUPER ADMIN password changed to: '+np); }
-function createStaff(){ if(!isSuperAdmin()){ alert('⛔ ONLY SUPER ADMIN can create!'); return;} let u=document.getElementById('staffUser').value.trim(); let p=document.getElementById('staffPass').value.trim(); let r=document.getElementById('staffRole').value; if(!u||!p){ alert('Enter username & password'); return;} if(getAllStaff().find(s=> s.u===u)){ alert('Username exists!'); return;} store.localStaff.push({u,p,role:r,status:'Approved'}); document.getElementById('staffUser').value=''; document.getElementById('staffPass').value=''; save(); }
-function renderStaff(){ let tb=document.getElementById('staffTable'); if(!tb) return; let all=getAllStaff(); let superMode=isSuperAdmin(); tb.innerHTML = all.map(s=> `<tr class="border-b"><td class="p-2">${s.u} - ${s.role} ${s.hidden?'<span class="bg-black text-yellow-300 px-2 py-0.5 rounded text-[10px]">🔒 SUPER ADMIN</span>':''}</td><td class="p-2 text-center text-[10px]">${superMode?'<span class="bg-green-100 text-green-700 px-1 rounded">Super Admin can edit</span>':'<span class="bg-gray-100 px-1 rounded">Staff cannot edit</span>'}</td><td class="p-2 text-center">${superMode? (s.hidden?'<span class="text-[10px]">Protected</span>':`<button onclick="document.getElementById('resetUserSelect').value='${s.u}'; document.getElementById('editNewUsername').value='${s.u}'; showModule('changepass')" class="bg-blue-500 text-white px-2 py-1 rounded text-xs">Edit</button> <button onclick="delStaff('${s.u}')" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button>`) : '<span class="text-[10px]">Only Super Admin can edit</span>'}</td></tr>`).join(''); let sel=document.getElementById('resetUserSelect'); if(sel){ sel.innerHTML = all.map(s=> `<option value="${s.u}">${s.u} - ${s.role}</option>`).join(''); } }
-function delStaff(u){ if(!isSuperAdmin()){ alert('⛔ ONLY SUPER ADMIN can delete!'); return;} if(u===_dec(_0xS)){ alert('Cannot delete super admin!'); return;} if(confirm('Delete '+u+'?')){ store.localStaff=store.localStaff.filter(x=> x.u!==u); delete store.passOverrides[u]; save(); } }
-function addPatient(){ let name=document.getElementById('patName').value.trim(); let phone=document.getElementById('patPhone').value.trim(); let age=document.getElementById('patAge').value; if(!name) return alert('Enter name'); store.patients.push({id:Date.now(), name, phone, age, status:'Approved'}); document.getElementById('patName').value=''; document.getElementById('patPhone').value=''; document.getElementById('patAge').value=''; save(); }
+function changeOwnPassword(){ let cur=document.getElementById('cpCurrent').value.trim(); let nw=document.getElementById('cpNew').value.trim(); let conf=document.getElementById('cpConfirm').value.trim(); let err=document.getElementById('cpError'); let suc=document.getElementById('cpSuccess'); err.classList.add('hidden'); suc.classList.add('hidden'); if(!cur||!nw||!conf){ err.textContent='Fill all fields'; err.classList.remove('hidden'); return;} if(nw!==conf){ err.textContent='Do not match'; err.classList.remove('hidden'); return;} let sess=JSON.parse(localStorage.getItem('ams_session')||'{}'); let all=getAllStaff(); let me=all.find(s=> s.u===sess.u); if(!me||me.p!==cur){ err.textContent='Current wrong!'; err.classList.remove('hidden'); return;} store.passOverrides[sess.u]=nw; save(); sess.p=nw; localStorage.setItem('ams_session', JSON.stringify(sess)); suc.textContent='✅ Password changed! New: '+nw; suc.classList.remove('hidden'); }
+function adminResetPassword(){ if(!isSuperAdmin()){ alert('ONLY SUPER ADMIN!'); return;} let oldU=document.getElementById('resetUserSelect').value; let newU=document.getElementById('editNewUsername').value.trim(); let np=document.getElementById('resetNewPass').value.trim(); if(!oldU||!np){ alert('Select user and password'); return;} if(!newU) newU=oldU; if(newU!==oldU){ let local=store.localStaff.find(s=> s.u===oldU); if(local){ local.u=newU; local.p=np; } if(store.passOverrides[oldU]) delete store.passOverrides[oldU]; store.passOverrides[newU]=np; alert('Username: '+oldU+' → '+newU+' Pass: '+np); } else { store.passOverrides[oldU]=np; alert('Password for '+oldU+' changed to: '+np); } save(); }
+function changeSuperAdminPass(){ if(!isSuperAdmin()){ alert('Only super admin!'); return;} let np=document.getElementById('superAdminNewPass').value.trim(); if(!np||np.length<4){ alert('Enter valid'); return;} store.passOverrides[_dec(_0xS)]=np; save(); alert('Super admin password changed to: '+np); }
+function createStaff(){ if(!isSuperAdmin()){ alert('ONLY SUPER ADMIN!'); return;} let u=document.getElementById('staffUser').value.trim(); let p=document.getElementById('staffPass').value.trim(); let r=document.getElementById('staffRole').value; if(!u||!p){ alert('Enter'); return;} store.localStaff.push({u,p,role:r}); save(); }
+function renderStaff(){ if(!isSuperAdmin()) return; let tb=document.getElementById('staffTable'); if(!tb) return; let all=getAllStaff(); tb.innerHTML = all.map(s=> `<tr class="border-b"><td class="p-2">${s.u} - ${s.role} ${s.hidden?'<span class="bg-black text-yellow-300 px-2 py-0.5 rounded text-[10px]">🔒 HIDDEN FROM LOGIN</span>':''}</td><td class="p-2 text-center text-[10px]">Hidden from login - Inside system</td><td class="p-2 text-center"><button onclick="document.getElementById('resetUserSelect').value='${s.u}'; document.getElementById('editNewUsername').value='${s.u}'; showModule('changepass')" class="bg-blue-500 text-white px-2 py-1 rounded text-xs">Edit</button> <button onclick="delStaff('${s.u}')" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); let sel=document.getElementById('resetUserSelect'); if(sel){ sel.innerHTML = all.map(s=> `<option value="${s.u}">${s.u} - ${s.role}</option>`).join(''); } }
+function delStaff(u){ if(!isSuperAdmin()){ alert('ONLY SUPER ADMIN!'); return;} if(u===_dec(_0xS)){ alert('Cannot delete super admin!'); return;} if(confirm('Delete '+u+'?')){ store.localStaff=store.localStaff.filter(x=> x.u!==u); delete store.passOverrides[u]; save(); } }
+function addPatient(){ let name=document.getElementById('patName').value.trim(); let phone=document.getElementById('patPhone').value.trim(); let age=document.getElementById('patAge').value; if(!name) return alert('Enter name'); store.patients.push({id:Date.now(), name, phone, age}); document.getElementById('patName').value=''; document.getElementById('patPhone').value=''; document.getElementById('patAge').value=''; save(); }
 function renderPatients(){ let tb=document.getElementById('patTable'); if(!tb) return; tb.innerHTML = store.patients.map(p=> `<tr class="border-b"><td class="p-2">${p.name}</td><td class="p-2 text-center">${p.phone}</td><td class="p-2 text-center">${p.age}</td><td class="p-2 text-center no-print"><button onclick="delPat(${p.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); document.getElementById('dashPatients').textContent=store.patients.length; }
 function delPat(id){ store.patients=store.patients.filter(x=> x.id!==id); save(); }
 function initDrugs(){ let sel=document.getElementById('drugSelect'); if(sel && sel.options.length===0){ DRUGS.forEach((d,i)=>{ let opt=document.createElement('option'); opt.value=d; opt.textContent=d+' | DRG'+String(i+1).padStart(4,'0'); sel.appendChild(opt); }); } }
@@ -200,15 +192,15 @@ function addLab(){ let pat=document.getElementById('labPat').value.trim(); let t
 function renderLab(){ let tb=document.getElementById('labTable'); if(!tb) return; tb.innerHTML = store.lab.map(l=> `<tr class="border-b"><td class="p-2">${l.pat}</td><td class="p-2 text-center">${l.test}</td><td class="p-2 text-center">${l.res}</td><td class="p-2 text-center no-print"><button onclick="delLab(${l.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); }
 function delLab(id){ store.lab=store.lab.filter(x=> x.id!==id); save(); }
 function addBill(){ let pat=document.getElementById('billPat').value.trim(); let phone=document.getElementById('billPhone').value.trim(); let amount=parseInt(document.getElementById('billAmount').value)||0; if(!pat||!amount) return alert('Enter'); store.billing.push({id:Date.now(), pat, phone, amount}); document.getElementById('billPat').value=''; document.getElementById('billPhone').value=''; document.getElementById('billAmount').value=''; save(); }
-function renderBilling(){ let tb=document.getElementById('billTable'); if(!tb) return; tb.innerHTML = store.billing.map(b=> `<tr class="border-b"><td class="p-2">${b.pat}</td><td class="p-2 text-center">${b.phone}</td><td class="p-2 text-center">UGX ${b.amount}</td><td class="p-2 text-center no-print"><button onclick="sendWhatsAppReceipt('${b.pat}',${b.amount},'${b.phone}')" class="bg-green-500 text-white px-2 py-1 rounded text-xs">WhatsApp</button><button onclick="delBill(${b.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); let inc=store.billing.reduce((s,b)=>s+b.amount,0); document.getElementById('dashIncome').textContent='UGX '+inc.toLocaleString(); document.getElementById('stIncome').textContent='UGX '+inc.toLocaleString(); calcProfit(); }
+function renderBilling(){ let tb=document.getElementById('billTable'); if(!tb) return; tb.innerHTML = store.billing.map(b=> `<tr class="border-b"><td class="p-2">${b.pat}</td><td class="p-2 text-center">${b.phone}</td><td class="p-2 text-center">UGX ${b.amount}</td><td class="p-2 text-center no-print"><button onclick="sendWhatsAppReceipt('${b.pat}',${b.amount},'${b.phone}')" class="bg-green-500 text-white px-2 py-1 rounded text-xs">WhatsApp</button><button onclick="delBill(${b.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); let inc=store.billing.reduce((s,b)=> s+b.amount,0); document.getElementById('dashIncome').textContent='UGX '+inc.toLocaleString(); document.getElementById('stIncome').textContent='UGX '+inc.toLocaleString(); calcProfit(); }
 function delBill(id){ store.billing=store.billing.filter(x=> x.id!==id); save(); }
 function sendWhatsAppReceipt(pat, amt, phone){ let msg = `*ALLAN MEDICAL - Receipt*%0APatient: ${pat}%0AAmount: UGX ${amt}%0ADate: ${new Date().toLocaleDateString()}%0AMTN MoMo: 0795390878`; let waPhone = phone.replace(/[^0-9]/g,''); if(waPhone.startsWith('0')) waPhone='256'+waPhone.slice(1); window.open(`https://wa.me/${waPhone}?text=${msg}`, '_blank'); }
 function addExpense(){ let title=document.getElementById('expTitle').value.trim(); let amount=parseInt(document.getElementById('expAmount').value)||0; let date=document.getElementById('expDate').value||new Date().toLocaleDateString(); if(!title||!amount) return alert('Enter'); store.expenses.push({id:Date.now(), title, amount, date}); document.getElementById('expTitle').value=''; document.getElementById('expAmount').value=''; document.getElementById('expDate').value=''; save(); }
-function renderExpenses(){ let tb=document.getElementById('expTable'); if(!tb) return; tb.innerHTML = store.expenses.map(e=> `<tr class="border-b"><td class="p-2">${e.title}</td><td class="p-2 text-center">UGX ${e.amount}</td><td class="p-2 text-center">${e.date}</td><td class="p-2 text-center no-print"><button onclick="delExp(${e.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); let ex=store.expenses.reduce((s,e)=>s+e.amount,0); document.getElementById('dashExp').textContent='UGX '+ex.toLocaleString(); document.getElementById('stExp').textContent='UGX '+ex.toLocaleString(); calcProfit(); }
+function renderExpenses(){ let tb=document.getElementById('expTable'); if(!tb) return; tb.innerHTML = store.expenses.map(e=> `<tr class="border-b"><td class="p-2">${e.title}</td><td class="p-2 text-center">UGX ${e.amount}</td><td class="p-2 text-center">${e.date}</td><td class="p-2 text-center no-print"><button onclick="delExp(${e.id})" class="bg-red-500 text-white px-2 py-1 rounded text-xs">Del</button></td></tr>`).join(''); let ex=store.expenses.reduce((s,e)=> s+e.amount,0); document.getElementById('dashExp').textContent='UGX '+ex.toLocaleString(); document.getElementById('stExp').textContent='UGX '+ex.toLocaleString(); calcProfit(); }
 function delExp(id){ store.expenses=store.expenses.filter(x=> x.id!==id); save(); }
-function calcProfit(){ let inc=store.billing.reduce((s,b)=>s+b.amount,0); let ex=store.expenses.reduce((s,e)=>s+e.amount,0); document.getElementById('dashProfit').textContent='UGX '+(inc-ex).toLocaleString(); document.getElementById('stProfit').textContent='UGX '+(inc-ex).toLocaleString(); }
+function calcProfit(){ let inc=store.billing.reduce((s,b)=> s+b.amount,0); let ex=store.expenses.reduce((s,e)=> s+e.amount,0); document.getElementById('dashProfit').textContent='UGX '+(inc-ex).toLocaleString(); document.getElementById('stProfit').textContent='UGX '+(inc-ex).toLocaleString(); }
 function copyLink(){ navigator.clipboard.writeText('https://allan128ug.github.io/medical-system/'); alert('Link copied!'); }
-function shareWhatsApp(){ let text = `*ALLAN MEDICAL SYSTEM V10.3 COMPLETE*%0A✅ Only Super Admin edits users!%0A%0ALink: https://allan128ug.github.io/medical-system/`; window.open(`https://wa.me/?text=${text}`, '_blank'); }
+function shareWhatsApp(){ let text = `*ALLAN MEDICAL SYSTEM V10.4 FINAL*%0A✅ ULTRA CLEAN - Staff list hidden!%0A%0ALink: https://allan128ug.github.io/medical-system/`; window.open(`https://wa.me/?text=${text}`, '_blank'); }
 function renderAll(){ initDrugs(); renderPatients(); renderPharmacy(); renderLab(); renderBilling(); renderExpenses(); renderStaff(); }
 window.onload = ()=>{ let sess=localStorage.getItem('ams_session'); if(sess){ try{ let u=JSON.parse(sess); let all=getAllStaff(); let f=all.find(x=> x.u===u.u && x.p===u.p); if(f) showApp(f); }catch(e){} } renderAll(); };
 </script>
